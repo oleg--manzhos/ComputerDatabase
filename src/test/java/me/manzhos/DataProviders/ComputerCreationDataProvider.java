@@ -10,7 +10,7 @@ public class ComputerCreationDataProvider {
     private static final String EMPTY_VALUE = "-";
 
     @DataProvider(name = "addComputer")
-    public static Object[][] powerDataProvider() {
+    public static Object[][] computerInfoDataProvider() {
         return new Object[][]{
                 {"My new computer!", "", "", "", "My new computer!", EMPTY_VALUE, EMPTY_VALUE, EMPTY_VALUE},
                 {"AA# 12 Qwerty 3 Gb", "1963-02-25", "", "", "AA# 12 Qwerty 3 Gb", "25 Feb 1963", EMPTY_VALUE, EMPTY_VALUE},

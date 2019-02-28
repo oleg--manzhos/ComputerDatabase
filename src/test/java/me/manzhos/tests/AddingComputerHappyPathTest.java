@@ -35,4 +35,15 @@ public class AddingComputerHappyPathTest extends TestBase {
         Assert.assertEquals(allComputersPage.getCompanyNameFromSearchResults(), expectedCompanyName, "Another company name is returned");
     }
 
+    @Test
+    public void checkCancelButtonDoesntCreateNewRecordTest() {
+        String computerName = "Another new Computer%";
+        addComputerPage.populateNewComputerFields(computerName,"", "", "");
+        addComputerPage.cancelComputerCreation();
+
+        allComputersPage.searchComputerByName(computerName);
+        Assert.assertTrue(addComputerPage.errorInFields("Introduced date"));
+        Assert.assertTrue(addComputerPage.errorInFields("Discontinued date"));
+    }
+
 }

@@ -18,6 +18,7 @@ public class AllComputersPage extends TestBase {
     private By discontinuedDateSearchResult = By.cssSelector("tr>td:nth-of-type(3");
     private By companyNameSearchResult = By.cssSelector("tr>td:nth-of-type(4");
     private By notificationBlock = By.cssSelector("div.alert-message.warning");
+    private By nothingToDisplay = By.cssSelector("div.well>em");
 
     //"Add a new computer" button is clicked
     public void initializeComputerCreation(){
@@ -50,7 +51,13 @@ public class AllComputersPage extends TestBase {
         return $(companyNameSearchResult).getText();
     }
 
+    //message that appears after add form was submitted
     public String getNotificationMessage(){
         return $(notificationBlock).getText();
+    }
+
+    //if search returns nothing, get this text
+    public String getZeroResultsText(){
+        return $(nothingToDisplay).getText();
     }
 }
