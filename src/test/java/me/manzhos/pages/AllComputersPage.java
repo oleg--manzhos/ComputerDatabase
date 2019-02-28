@@ -20,6 +20,8 @@ public class AllComputersPage extends TestBase {
     private By notificationBlock = By.cssSelector("div.alert-message.warning");
     private By nothingToDisplay = By.cssSelector("div.well>em");
 
+    private final String ZERO_RESULT = "Nothing to display";
+
     //"Add a new computer" button is clicked
     public void initializeComputerCreation(){
         $(addNewComputerBtn).click();
@@ -56,9 +58,9 @@ public class AllComputersPage extends TestBase {
         return $(notificationBlock).getText();
     }
 
-    //if search returns nothing, get this text
-    public String getZeroResultsText(){
-        return $(nothingToDisplay).getText();
+    //if search returns nothing, check this text
+    public boolean isZeroResult(){
+        return $(nothingToDisplay).getText().equals(ZERO_RESULT);
     }
 
     public void openSelectedComputer(String computerName){

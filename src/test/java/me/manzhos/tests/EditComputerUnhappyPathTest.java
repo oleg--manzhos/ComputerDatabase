@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * Created by omanzhos on 2/28/2019.
  */
-public class EditComputerUnhappyPath extends TestBase {
+public class EditComputerUnhappyPathTest extends TestBase {
 
     private AddComputerPage addComputerPage = new AddComputerPage();
     private AllComputersPage allComputersPage = new AllComputersPage();
@@ -37,7 +37,7 @@ public class EditComputerUnhappyPath extends TestBase {
         editComputerPage.cancelComputerEdition();
         allComputersPage.searchComputerByName(computerName);
 
-        Assert.assertEquals(allComputersPage.getComputerNameFromSearchResult(),computerName, "Another computer name was returned");
+        Assert.assertEquals(allComputersPage.getComputerNameFromSearchResult(), computerName, "Another computer name was returned");
         Assert.assertEquals(allComputersPage.getIntroducedDateFromSearchResults(), "-", "Another introduced date was returned");
         Assert.assertEquals(allComputersPage.getDiscontinuedDateFromSearchResults(), "-", "Another discontinued date was returned");
         Assert.assertEquals(allComputersPage.getCompanyNameFromSearchResults(), "-", "Another company name is returned");
