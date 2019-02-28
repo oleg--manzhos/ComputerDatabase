@@ -1,6 +1,7 @@
 package me.manzhos.base;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -17,6 +18,7 @@ import java.net.URL;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.close;
+import static com.codeborne.selenide.Selenide.open;
 
 /**
  * Created by omanzhos on 2/28/2019.
@@ -38,13 +40,16 @@ public class TestBase {
 
     @BeforeClass
     public void setUp() throws Exception {
-      //  FileInputStream file = new FileInputStream("target/classes/config.properties");
-      //  Properties prop = new Properties();
-      //  prop.load(file);
+        //  FileInputStream file = new FileInputStream("target/classes/config.properties");
+        //  Properties prop = new Properties();
+        //  prop.load(file);
 //
-    //    Configuration.timeout = Integer.valueOf(prop.getProperty("wait.time"));
-          Configuration.baseUrl = getURL();
-
+        //    Configuration.timeout = Integer.valueOf(prop.getProperty("wait.time"));
+        Configuration.baseUrl = getURL();
+        open(getURL());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
+//    }
+    }
 
 //        if (System.getProperty("browser.type").equalsIgnoreCase("chrome")) {
 //            DesiredCapabilities cap2 = DesiredCapabilities.chrome();
@@ -76,14 +81,10 @@ public class TestBase {
 //            System.out.println("live, then video recording can be viewed @ " + videoURL);
 //        }
 //
-//        WebDriverRunner.getWebDriver().manage().window().maximize();
-//    }
 //
-//    @AfterClass
-//    protected void tearDown() {
-//        if (driver != null) {
-//            close();
-//        }
-//    }
+    @AfterClass
+    protected void tearDown(){
+            Selenide.close();
+
     }
 }

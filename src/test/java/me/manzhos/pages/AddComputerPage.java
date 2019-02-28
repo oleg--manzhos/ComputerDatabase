@@ -1,5 +1,7 @@
 package me.manzhos.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
@@ -16,6 +18,7 @@ public class AddComputerPage {
     private By company = By.name("company");
     private By createThisComputerBtn = By.cssSelector("input[type=submit]");
     private By cancelBtn = By.linkText("Cancel");
+    private By errorComputerNameField = By.xpath("//div[@class='clearfix error']//label");
 
     public void populateNewComputerFields(String newComputerName, String introduceDate, String discontinueDate, String companyName){
         $(computerName).sendKeys(newComputerName);
@@ -33,5 +36,10 @@ public class AddComputerPage {
 
     public void cancelComputerCreation(){
         $(cancelBtn).click();
+    }
+
+    //Check that error appears for specified field
+    public boolean errorFieldIsDisplayed(String field){
+        return $(errorComputerNameField).getText().equals(field);
     }
 }

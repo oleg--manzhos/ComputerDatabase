@@ -49,4 +49,8 @@ public class AllComputersPage extends TestBase {
     public String getCompanyNameFromSearchResults(){
         return $(companyNameSearchResult).getText();
     }
+
+    public String getNotificationMessage(){
+        return $(notificationBlock).getText();
+    }
 }
