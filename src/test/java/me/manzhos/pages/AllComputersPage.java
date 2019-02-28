@@ -60,4 +60,8 @@ public class AllComputersPage extends TestBase {
     public String getZeroResultsText(){
         return $(nothingToDisplay).getText();
     }
+
+    public void openSelectedComputer(String computerName){
+        $(By.linkText(computerName)).click();
+    }
 }
