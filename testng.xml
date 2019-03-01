@@ -1,0 +1,19 @@
+<suite name="computer-database">
+    <test name="AddComputer">
+        <classes>
+            <class name="me.manzhos.tests.AddingComputerHappyPathTest"/>
+            <class name="me.manzhos.tests.AddingComputerUnhappyPathTest"/>
+        </classes>
+    </test>
+    <test name="EditComputer">
+        <classes>
+            <class name="me.manzhos.tests.EditComputerHappyPathTest"/>
+            <class name="me.manzhos.tests.EditComputerUnhappyPathTest"/>
+        </classes>
+    </test>
+    <test name="DeleteComputer">
+        <classes>
+            <class name="me.manzhos.tests.DeleteComputerTest"/>
+        </classes>
+    </test>
+</suite>

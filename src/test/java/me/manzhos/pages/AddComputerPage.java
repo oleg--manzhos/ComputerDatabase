@@ -1,7 +1,5 @@
 package me.manzhos.pages;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
@@ -27,8 +25,7 @@ public class AddComputerPage {
         $(introducedDate).sendKeys(introduceDate);
         $(discontinuedDate).sendKeys(discontinueDate);
         if (!companyName.isEmpty()) {
-            Select companyNameDD = new Select($(company));
-            companyNameDD.selectByVisibleText(companyName);
+            new Select($(company)).selectByVisibleText(companyName);
         }
     }
 

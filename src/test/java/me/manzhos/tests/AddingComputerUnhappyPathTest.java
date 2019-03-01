@@ -5,7 +5,9 @@ import me.manzhos.base.TestBase;
 import me.manzhos.pages.AddComputerPage;
 import me.manzhos.pages.AllComputersPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -16,8 +18,8 @@ public class AddingComputerUnhappyPathTest extends TestBase{
     private AddComputerPage addComputerPage = new AddComputerPage();
     private AllComputersPage allComputersPage = new AllComputersPage();
 
-    @BeforeClass
-    public void createComputerInit(){
+    @BeforeMethod
+    public void initializeComputerCreation(){
         allComputersPage.initializeComputerCreation();
     }
 
@@ -27,12 +29,10 @@ public class AddingComputerUnhappyPathTest extends TestBase{
         addComputerPage.confirmComputerCreation();
 
         Assert.assertTrue(addComputerPage.errorInFields("Computer name"));
-        Assert.assertFalse(addComputerPage.errorInFields("Introduced date"));
     }
 
     @Test(dataProvider = "invalidIntroductionDates", dataProviderClass = IncorrectDatesDataProvider.class)
     public void checkIncorrectIntroductionDatesAreValidatedTest(String computerName, String introductionDate, String discontinuedDate){
-        addComputerPage.clearAddComputerFormFields();
         addComputerPage.populateNewComputerFields(computerName,  introductionDate, discontinuedDate, "");
         addComputerPage.confirmComputerCreation();
 
@@ -41,7 +41,6 @@ public class AddingComputerUnhappyPathTest extends TestBase{
 
     @Test(dataProvider = "invalidDiscontinuingDates", dataProviderClass = IncorrectDatesDataProvider.class)
     public void checkIncorrectDiscontinuedDatesAreValidatedTest(String computerName, String introductionDate, String discontinuedDate){
-        addComputerPage.clearAddComputerFormFields();
         addComputerPage.populateNewComputerFields(computerName,  introductionDate, discontinuedDate, "");
         addComputerPage.confirmComputerCreation();
 
@@ -55,5 +54,10 @@ public class AddingComputerUnhappyPathTest extends TestBase{
 
         Assert.assertTrue(addComputerPage.errorInFields("Introduced date"));
         Assert.assertTrue(addComputerPage.errorInFields("Discontinued date"));
+    }
+
+    @AfterMethod
+    public void closeComputerCreationForm(){
+        addComputerPage.cancelComputerCreation();
     }
 }

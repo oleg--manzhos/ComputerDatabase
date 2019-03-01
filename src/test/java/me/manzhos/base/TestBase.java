@@ -16,11 +16,11 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class TestBase {
 
-    Properties properties = new Properties();
+    private Properties properties = new Properties();
     private String url;
 
     //get application URL from config file
-    protected String getURL() {
+    private String getURL() {
         try {
             properties.load(this.getClass().getClassLoader().getResourceAsStream("environment.properties"));
             url = properties.getProperty("url");
