@@ -1,11 +1,12 @@
 # Computer Database project
 
-To start all tests in Chrome (starts by default, the following command should be executed:
+To start all tests in Chrome (starts by default), the following command should be executed:
 ```
 mvn clean test
 ```
 
 _NOTE:_ Automation project uses Boni's Garcia Driver Manager that automatically downloads driver version that fits your browser. Please ensure that your firewall/proxy is configured properly to let the driver be downloaded.
+
 ##Test Execution
 There are several ways to run tests
 ### IDE way
@@ -30,10 +31,11 @@ mvn clean test -Dtest=DeleteComputerTest
  * EditComputerUnhappyPathTest
  * DeleteComputerTest
  
- Any of these classes could be run separately using _-Dtest_ parameter.
+ Any of these classes could be run separately using -D*test* parameter.
  
  ###Runnig with report
- Report on results of testing could be generated based on Maven Surefire plugin. To run report generation, it is necessary to start tests using the following command:
+ Report on results of testing could be generated based on Maven Surefire plugin.
+ To run report generation, it is necessary to start tests using the following command:
  ```
  mvn clean site
 ```
@@ -41,5 +43,5 @@ Report for individual test can also be generated:
 ```
 mvn clean site -Dtest=AddComputerHappyPathTest
 ```
-After execution will be finished, the report location will be:
+After execution will be finished, the report will be located here:
 [target/surefire-reports/index.html](target/surefire-reports/index.html)
