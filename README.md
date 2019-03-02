@@ -4,7 +4,7 @@ To start all tests in Chrome (starts by default), the following command should b
 ```
 mvn clean test
 ```
-_NOTE:_ Automation project uses Boni's Garcia Driver Manager that automatically downloads driver version that fits your browser. Please ensure that your firewall/proxy is configured properly to let the driver be downloaded.
+*NOTE:* Automation project uses Boni's Garcia Driver Manager that automatically downloads driver version that fits your browser. Please ensure that your firewall/proxy is configured properly to let the driver be downloaded.
 
 ## Test Execution
 
@@ -35,9 +35,9 @@ mvn clean test -Dtest=DeleteComputerTest
  * EditComputerUnhappyPathTest
  * DeleteComputerTest
  
- Any of these classes could be run separately using -D*test* parameter.
+Any of these classes could be run separately using -D*test* parameter.
  
- ### Running with report
+### Running with report
 
  Report on results of testing could be generated based on Maven Surefire plugin.
  To run report generation, it is necessary to start tests using the following command:
