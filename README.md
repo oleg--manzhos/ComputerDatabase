@@ -7,7 +7,7 @@ mvn clean test
 
 _NOTE:_ Automation project uses Boni's Garcia Driver Manager that automatically downloads driver version that fits your browser. Please ensure that your firewall/proxy is configured properly to let the driver be downloaded.
 
-##Test Execution
+## Test Execution
 There are several ways to run tests
 ### IDE way
 You can run tests from your IDE. 
@@ -33,7 +33,7 @@ mvn clean test -Dtest=DeleteComputerTest
  
  Any of these classes could be run separately using -D*test* parameter.
  
- ###Runnig with report
+ ### Runnig with report
  Report on results of testing could be generated based on Maven Surefire plugin.
  To run report generation, it is necessary to start tests using the following command:
  ```
