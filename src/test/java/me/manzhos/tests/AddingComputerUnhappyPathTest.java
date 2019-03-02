@@ -4,6 +4,8 @@ import me.manzhos.DataProviders.IncorrectDatesDataProvider;
 import me.manzhos.base.TestBase;
 import me.manzhos.pages.AddComputerPage;
 import me.manzhos.pages.AllComputersPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -15,11 +17,13 @@ import org.testng.annotations.Test;
  */
 public class AddingComputerUnhappyPathTest extends TestBase{
 
+    private Logger log = LoggerFactory.getLogger(AddingComputerUnhappyPathTest.class);
     private AddComputerPage addComputerPage = new AddComputerPage();
     private AllComputersPage allComputersPage = new AllComputersPage();
 
     @BeforeMethod
     public void initializeComputerCreation(){
+        log.info("---- Test" + getClass().getName() +" is started----");
         allComputersPage.initializeComputerCreation();
     }
 
@@ -56,8 +60,9 @@ public class AddingComputerUnhappyPathTest extends TestBase{
         Assert.assertTrue(addComputerPage.errorInFields("Discontinued date"));
     }
 
-    @AfterMethod
+    @AfterMethod (alwaysRun = true)
     public void closeComputerCreationForm(){
         addComputerPage.cancelComputerCreation();
+        log.info("--------");
     }
 }

@@ -3,6 +3,8 @@ package me.manzhos.tests;
 import me.manzhos.base.TestBase;
 import me.manzhos.pages.AddComputerPage;
 import me.manzhos.pages.AllComputersPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,12 +14,14 @@ import org.testng.annotations.Test;
  */
 public class EditComputerHappyPathTest extends TestBase {
 
+    private Logger log = LoggerFactory.getLogger(EditComputerHappyPathTest.class);
     private AddComputerPage addComputerPage = new AddComputerPage();
     private AllComputersPage allComputersPage = new AllComputersPage();
-    private String computerName = "@A computer again@";
 
     @BeforeMethod
     public void createComputerForEditing(){
+        log.info("-------"+getClass().getName()+"--------");
+        String computerName = "@A computer again@";
         allComputersPage.initializeComputerCreation();
         addComputerPage.populateNewComputerFields(computerName,"","","");
         addComputerPage.confirmComputerCreation();
@@ -40,5 +44,6 @@ public class EditComputerHappyPathTest extends TestBase {
         Assert.assertEquals(allComputersPage.getIntroducedDateFromSearchResults(), "08 Mar 1989", "Another introduced date was returned");
         Assert.assertEquals(allComputersPage.getDiscontinuedDateFromSearchResults(), "10 Apr 1990", "Another discontinued date was returned");
         Assert.assertEquals(allComputersPage.getCompanyNameFromSearchResults(), newCompanyName, "Another company name is returned");
+        log.info("--------");
     }
 }

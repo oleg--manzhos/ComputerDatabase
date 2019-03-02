@@ -2,6 +2,8 @@ package me.manzhos.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -10,6 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class AddComputerPage {
 
+    Logger log = LoggerFactory.getLogger(AddComputerPage.class);
     private By computerName = By.name("name");
     private By introducedDate = By.name("introduced");
     private By discontinuedDate = By.name("discontinued");
@@ -22,19 +25,25 @@ public class AddComputerPage {
 
     public void populateNewComputerFields(String newComputerName, String introduceDate, String discontinueDate, String companyName){
         $(computerName).sendKeys(newComputerName);
+        log.info("Computer name: "+ newComputerName);
         $(introducedDate).sendKeys(introduceDate);
+        log.info("Introduced date: "+ introduceDate);
         $(discontinuedDate).sendKeys(discontinueDate);
+        log.info("Discontinued date: "+ introduceDate);
         if (!companyName.isEmpty()) {
             new Select($(company)).selectByVisibleText(companyName);
+            log.info("Company name: "+ introduceDate);
         }
     }
 
     public void confirmComputerCreation(){
         $(createThisComputerBtn).click();
+        log.info("Computer was created");
     }
 
     public void cancelComputerCreation(){
         $(cancelBtn).click();
+        log.info("Computer creation was cancelled");
     }
 
     //Check that error appears for computer name field

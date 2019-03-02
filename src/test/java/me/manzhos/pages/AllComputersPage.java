@@ -2,6 +2,8 @@ package me.manzhos.pages;
 
 import me.manzhos.base.TestBase;
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -10,6 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class AllComputersPage extends TestBase {
 
+    Logger log = LoggerFactory.getLogger(AllComputersPage.class);
     private By filterField = By.name("f");
     private By filterByNameBtn = By.id("searchsubmit");
     private By addNewComputerBtn = By.cssSelector("a#add");
@@ -25,12 +28,14 @@ public class AllComputersPage extends TestBase {
     //"Add a new computer" button is clicked
     public void initializeComputerCreation(){
         $(addNewComputerBtn).click();
+        log.info("Add new computer button was clicked");
     }
 
     //Search for provided computer name
     public void searchComputerByName(String computerName){
         $(filterField).sendKeys(computerName);
         $(filterByNameBtn).click();
+        log.info("Computer "+computerName+" was searched");
     }
 
     //Get computer name from the grid of results
@@ -55,7 +60,11 @@ public class AllComputersPage extends TestBase {
 
     //message that appears after add form was submitted
     public String getNotificationMessage(){
-        return $(notificationBlock).getText();
+        String notificationText;
+        notificationText = $(notificationBlock).getText();
+        log.info("Notification text is obtained");
+        return notificationText;
+
     }
 
     //if search returns nothing, check this text
@@ -65,5 +74,6 @@ public class AllComputersPage extends TestBase {
 
     public void openSelectedComputer(String computerName){
         $(By.linkText(computerName)).click();
+        log.info("Computer " +computerName+" was opened");
     }
 }

@@ -4,6 +4,8 @@ import me.manzhos.DataProviders.ComputerCreationDataProvider;
 import me.manzhos.base.TestBase;
 import me.manzhos.pages.AddComputerPage;
 import me.manzhos.pages.AllComputersPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,6 +14,7 @@ import org.testng.annotations.Test;
  */
 public class AddingComputerHappyPathTest extends TestBase {
 
+    private Logger log = LoggerFactory.getLogger(AddingComputerHappyPathTest.class);
     private AddComputerPage addComputerPage = new AddComputerPage();
     private AllComputersPage allComputersPage = new AllComputersPage();
 
@@ -19,6 +22,7 @@ public class AddingComputerHappyPathTest extends TestBase {
     public void addComputerWithFieldsFromDataProviderTest(String computerName, String introductionDate, String discontinuedDate,
                                             String company, String expectedComputerName, String expectedIntroductionDate,
                                             String expectedDiscontinuedDate, String expectedCompanyName){
+        log.info("---- Test" + getClass().getName() +" is started----");
         allComputersPage.initializeComputerCreation();
         addComputerPage.populateNewComputerFields(computerName, introductionDate, discontinuedDate, company);
         addComputerPage.confirmComputerCreation();
@@ -29,10 +33,12 @@ public class AddingComputerHappyPathTest extends TestBase {
         Assert.assertEquals(allComputersPage.getIntroducedDateFromSearchResults(), expectedIntroductionDate, "Another introduced date was returned");
         Assert.assertEquals(allComputersPage.getDiscontinuedDateFromSearchResults(), expectedDiscontinuedDate, "Another discontinued date was returned");
         Assert.assertEquals(allComputersPage.getCompanyNameFromSearchResults(), expectedCompanyName, "Another company name is returned");
+        log.info("--------");
     }
 
     @Test
     public void checkCancelButtonDoesntCreateNewRecordTest() {
+        log.info("---- Test" + getClass().getName() +" is started----");
         String computerName = "Another new Computer%";
         allComputersPage.initializeComputerCreation();
         addComputerPage.populateNewComputerFields(computerName,"", "", "");
@@ -40,6 +46,7 @@ public class AddingComputerHappyPathTest extends TestBase {
 
         allComputersPage.searchComputerByName(computerName);
         Assert.assertTrue(allComputersPage.isZeroResult());
+        log.info("--------");
     }
 
 }

@@ -4,6 +4,8 @@ import me.manzhos.base.TestBase;
 import me.manzhos.pages.AddComputerPage;
 import me.manzhos.pages.AllComputersPage;
 import me.manzhos.pages.EditComputerPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,6 +17,7 @@ public class DeleteComputerTest extends TestBase {
 
     private final String DELETION_CONFIRMATION = "Done! Computer has been deleted";
 
+    private Logger log = LoggerFactory.getLogger(DeleteComputerTest.class);
     private AddComputerPage addComputerPage = new AddComputerPage();
     private AllComputersPage allComputersPage = new AllComputersPage();
     private EditComputerPage editComputerPage = new EditComputerPage();
@@ -22,6 +25,7 @@ public class DeleteComputerTest extends TestBase {
 
     @BeforeMethod
     public void prepareComputerForRemoval() {
+        log.info("-------"+getClass().getName()+"--------");
         allComputersPage.initializeComputerCreation();
         addComputerPage.populateNewComputerFields(computerName, "", "", "");
         addComputerPage.confirmComputerCreation();
@@ -29,6 +33,7 @@ public class DeleteComputerTest extends TestBase {
 
     @Test
     public void removeComputerTest() {
+        log.info("---- Test "+getClass().getName()+" is started-----");
         allComputersPage.searchComputerByName(computerName);
         allComputersPage.openSelectedComputer(computerName);
         editComputerPage.deleteThisComputer();
@@ -36,5 +41,6 @@ public class DeleteComputerTest extends TestBase {
 
         allComputersPage.searchComputerByName(computerName);
         Assert.assertTrue(allComputersPage.isZeroResult());
+        log.info("--------");
     }
 }

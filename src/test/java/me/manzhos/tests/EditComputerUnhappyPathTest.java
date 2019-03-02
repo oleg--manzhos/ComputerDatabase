@@ -4,6 +4,8 @@ import me.manzhos.base.TestBase;
 import me.manzhos.pages.AddComputerPage;
 import me.manzhos.pages.AllComputersPage;
 import me.manzhos.pages.EditComputerPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,6 +15,7 @@ import org.testng.annotations.Test;
  */
 public class EditComputerUnhappyPathTest extends TestBase {
 
+    private Logger log = LoggerFactory.getLogger(EditComputerUnhappyPathTest.class);
     private AddComputerPage addComputerPage = new AddComputerPage();
     private AllComputersPage allComputersPage = new AllComputersPage();
     private EditComputerPage editComputerPage = new EditComputerPage();
@@ -20,6 +23,7 @@ public class EditComputerUnhappyPathTest extends TestBase {
 
     @BeforeMethod
     public void createComputerForEditing(){
+        log.info("-------"+getClass().getName()+"--------");
         allComputersPage.initializeComputerCreation();
         addComputerPage.populateNewComputerFields(computerName,"","","");
         addComputerPage.confirmComputerCreation();
@@ -41,5 +45,6 @@ public class EditComputerUnhappyPathTest extends TestBase {
         Assert.assertEquals(allComputersPage.getIntroducedDateFromSearchResults(), "-", "Another introduced date was returned");
         Assert.assertEquals(allComputersPage.getDiscontinuedDateFromSearchResults(), "-", "Another discontinued date was returned");
         Assert.assertEquals(allComputersPage.getCompanyNameFromSearchResults(), "-", "Another company name is returned");
+        log.info("--------");
     }
 }
