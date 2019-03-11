@@ -1,4 +1,4 @@
-# Computer Database project
+# CompDatabase project
 
 To start all tests in Chrome (starts by default), the following command should be executed:
 ```
