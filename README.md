@@ -1,4 +1,4 @@
-# CompDatabase project
+# One project
 
 To start all tests in Chrome (starts by default), the following command should be executed:
 ```
@@ -26,15 +26,8 @@ mvn clean test -Dselenide.browser=ie
 ```
 Project contains surefire plugin that allows to run tests separately:
 ```
-mvn clean test -Dtest=DeleteComputerTest
-```
- The complete list of test methods:
- * AddComputerHappyPathTest
- * AddComputerUnhappyPathTest
- * EditComputerHappyPathTest
- * EditComputerUnhappyPathTest
- * DeleteComputerTest
- 
+mvn clean test -Dtest=DeleteTest
+``` 
 Any of these classes could be run separately using -D*test* parameter.
  
 ### Running with report
@@ -46,7 +39,7 @@ Any of these classes could be run separately using -D*test* parameter.
 ```
 Report for individual test can also be generated:
 ```
-mvn clean site -Dtest=AddComputerHappyPathTest
+mvn clean site -Dtest=AddHappyPathTest
 ```
 After execution will be finished, the report will be located here:
 [target/surefire-reports/index.html](target/surefire-reports/index.html)
